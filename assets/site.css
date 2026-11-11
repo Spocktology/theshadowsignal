@@ -2,7 +2,7 @@
 :root{
   --bg:#0a0b0f; --bg-soft:#12141b; --card:#161923; --line:#262a38;
   --fg:#e8e9ee; --muted:#9aa0b4; --accent:#d4442f; --accent-soft:#ff6a4d;
-  --radius:10px; --wrap:720px;
+  --radius:10px; --wrap:720px; --wrap-wide:1200px;
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -14,6 +14,7 @@ a{color:var(--accent-soft); text-decoration:none}
 a:hover{text-decoration:underline}
 img{max-width:100%; height:auto; display:block}
 .wrap{max-width:var(--wrap); margin:0 auto; padding:0 20px}
+.wrap-wide{max-width:var(--wrap-wide)}
 
 /* header */
 .site-head{border-bottom:1px solid var(--line); background:var(--bg-soft); position:sticky; top:0; z-index:10}
@@ -35,7 +36,7 @@ p{margin:0 0 14px}
 .hero{display:flex; gap:22px; align-items:flex-start; margin-bottom:10px; flex-wrap:wrap}
 .hero img{width:160px; border-radius:var(--radius); border:1px solid var(--line); flex:0 0 auto}
 .hero-body{flex:1 1 300px; min-width:260px}
-.tagline{color:var(--muted); margin:0 0 16px}
+.tagline{color:var(--muted); margin:0 0 16px; max-width:62ch}
 
 /* meta line */
 .meta{color:var(--muted); font-size:.88rem; margin:0 0 26px; display:flex; gap:8px; flex-wrap:wrap; align-items:center}
@@ -127,4 +128,49 @@ details.transcript[open] summary{border-bottom:1px solid var(--line)}
 }
 @media (prefers-reduced-motion:no-preference){
   a,.ep-card{transition:color .15s ease,border-color .15s ease,background .15s ease}
+}
+
+/* ---------- home 3-column layout ----------
+   Mobile-first: single column, order = episodes, topics, about.
+   At >=1040px the rails become true left/right margins so topics are
+   visible without scrolling. */
+.home-grid{display:grid; gap:30px; grid-template-columns:1fr}
+.home-main{min-width:0}
+.rail{min-width:0}
+.rail-h{margin:0 0 14px; font-size:1.05rem; padding-bottom:6px; border-bottom:1px solid var(--line)}
+.rail-box{background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:15px 17px; font-size:.92rem; color:#c9ccd8}
+.notes-rail p{margin:0 0 11px}
+.notes-rail p:last-child{margin-bottom:0}
+.rail-foot{margin:12px 0 0; font-size:.86rem}
+.rail-h-sub{margin-top:26px; font-size:.98rem}
+.rail-links{list-style:none; padding:0; margin:0; display:grid; gap:7px; font-size:.9rem}
+.rail-links a{display:block; background:var(--card); border:1px solid var(--line);
+  border-radius:7px; padding:7px 12px; color:var(--fg)}
+.rail-links a:hover{border-color:var(--accent); color:var(--accent-soft); text-decoration:none}
+.rail-note{margin:0; font-size:.9rem; color:var(--muted)}
+.tcount{opacity:.55; font-variant-numeric:tabular-nums}
+
+/* mobile ordering: episodes first, then topics (filtering), then about */
+.home-main{order:1}
+.rail-right{order:2}
+.rail-left{order:3}
+
+@media (min-width:1040px){
+  .home-grid{
+    grid-template-columns:minmax(250px,290px) minmax(0,1fr) minmax(200px,235px);
+    gap:34px; align-items:start;
+  }
+  .rail-left{order:0}
+  .home-main{order:0}
+  .rail-right{order:0}
+  /* Rails stick without an inner scrollbar: content is trimmed to fit instead,
+     so there is never a nested scroll region next to the page scrollbar. */
+  .rail{position:sticky; top:86px}
+  .tags-rail{flex-direction:column; gap:6px}
+  .tags-rail a{display:flex; justify-content:space-between; gap:8px; width:100%;
+    border-radius:7px; padding:6px 11px}
+}
+@media (min-width:1040px) and (max-width:1199px){
+  .home-grid{gap:26px}
 }
