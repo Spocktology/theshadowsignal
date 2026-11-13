@@ -174,3 +174,24 @@ details.transcript[open] summary{border-bottom:1px solid var(--line)}
 @media (min-width:1040px) and (max-width:1199px){
   .home-grid{gap:26px}
 }
+
+/* ---------- search ---------- */
+.visually-hidden{position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0}
+.search-form{display:flex; gap:9px; margin:0 0 18px; flex-wrap:wrap}
+.search-form input[type=search]{
+  flex:1 1 240px; min-width:0; background:var(--card); color:var(--fg);
+  border:1px solid var(--line); border-radius:var(--radius);
+  padding:12px 15px; font-size:1rem; font-family:inherit; -webkit-appearance:none}
+.search-form input[type=search]:focus{outline:none; border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(212,68,47,.18)}
+.search-form input[type=search]::placeholder{color:var(--muted)}
+.search-form button{
+  background:var(--accent); color:#fff; font-weight:600; font-size:.95rem;
+  font-family:inherit; border:0; border-radius:var(--radius);
+  padding:12px 22px; cursor:pointer}
+.search-form button:hover{background:var(--accent-soft)}
+.search-status{color:var(--muted); font-size:.9rem; margin:0 0 16px; min-height:1.2em}
+#results mark{background:#f0b429; color:#1a1205; font-weight:600;
+  border-radius:3px; padding:0 3px}
+#results .ep-card p{color:#d4d7e2}
