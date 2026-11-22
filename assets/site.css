@@ -22,7 +22,7 @@ img{max-width:100%; height:auto; display:block}
 .site-head img{width:40px; height:40px; border-radius:8px; flex:0 0 auto}
 .brand{font-weight:700; font-size:1.05rem; letter-spacing:.2px; color:var(--fg)}
 .brand:hover{text-decoration:none; color:var(--accent-soft)}
-.site-nav{margin-left:auto; display:flex; gap:18px; font-size:.92rem}
+.site-nav{margin-left:auto; display:flex; gap:18px; font-size:.92rem; align-items:center; flex-wrap:wrap}
 .site-nav a{color:var(--muted)}
 .site-nav a:hover{color:var(--fg); text-decoration:none}
 
@@ -195,3 +195,28 @@ details.transcript[open] summary{border-bottom:1px solid var(--line)}
 #results mark{background:#f0b429; color:#1a1205; font-weight:600;
   border-radius:3px; padding:0 3px}
 #results .ep-card p{color:#d4d7e2}
+
+/* ---------- supporter CTA ---------- */
+.nav-cta{
+  background:var(--accent); color:#fff !important; font-weight:600;
+  border-radius:999px; padding:6px 14px; font-size:.84rem; white-space:nowrap}
+.nav-cta:hover{background:var(--accent-soft); text-decoration:none}
+.cta-short{display:none}
+@media (max-width:860px){
+  .cta-long{display:none}
+  .cta-short{display:inline}
+}
+/* Narrow phones: tighten the nav so the CTA cannot push the header wider
+   than the viewport (caused horizontal overflow at 390px). */
+@media (max-width:460px){
+  .site-nav{gap:12px; font-size:.86rem; width:100%; margin-left:0; padding-top:4px}
+  .nav-cta{padding:5px 11px; font-size:.78rem}
+}
+.support-inline{
+  display:flex; gap:10px; align-items:baseline; flex-wrap:wrap;
+  background:var(--card); border:1px solid var(--line);
+  border-left:3px solid var(--accent); border-radius:var(--radius);
+  padding:12px 16px; margin:0 0 26px; font-size:.92rem}
+.support-inline a{font-weight:600}
+.support-inline span{color:var(--muted); font-size:.86rem}
+.foot-cta{font-weight:600}
